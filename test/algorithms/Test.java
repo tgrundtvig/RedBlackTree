@@ -5,6 +5,8 @@
  */
 package algorithms;
 
+import algorithms.RedBlackBST;
+
 import java.util.Comparator;
 
 /**
