@@ -32,7 +32,7 @@ public class RedBlackBST<E>
     
     private RedBlackNode<E> insert(E data, RedBlackNode<E> h)
     {
-        if(h == null) return new RedBlackNode<>(data);
+        if(h == null) return new RedBlackNode<E>(data);
         int c = comp.compare(data, h.getData());
         if(c < 0)
         {

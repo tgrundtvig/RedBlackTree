@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithms;
+package test;
 
 import algorithms.RedBlackBST;
 
 import java.util.Comparator;
 
-/**
- *
- * @author Tobias
- */
 public class Test
 {
     public static void main(String[] args)
@@ -24,6 +20,5 @@ public class Test
         myTree.insert("E");
         myTree.insert("D");
         myTree.insert("C");
-       
     }
 }
