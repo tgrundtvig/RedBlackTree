@@ -22,6 +22,5 @@ public class Test
         myTree.insert("E");
         myTree.insert("D");
         myTree.insert("C");
-       
     }
 }
