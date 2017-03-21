@@ -64,8 +64,4 @@ public class RedBlackNode<E>
     {
         this.isRed = isRed;
     }
-    
-    
-    
-    
 }
