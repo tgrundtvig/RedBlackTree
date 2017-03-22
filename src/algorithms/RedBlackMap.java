@@ -34,12 +34,28 @@ public class RedBlackMap<K, V> implements IMap<K, V> {
 
     @Override
     public V get(K key) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        RedBlackMapNode<K, V> node = get(key, root);
+        if(node == null)
+            return null;
+        
+        return node.getVal();
     }
 
     @Override
     public int size() {
         return size;
+    }
+    
+    private RedBlackMapNode<K, V> get(K key, RedBlackMapNode<K, V> node){
+        if(node == null) return null;
+        int c = comp.compare(key, node.getKey());
+        if(c < 0){
+            return get(key, node.getLeft());
+        } else if(c > 0){
+            return get(key, node.getRight());
+        }else {
+            return node;
+        }
     }
 
     private RedBlackMapNode<K, V> put(K key, V val, RedBlackMapNode<K, V> node) {
