@@ -30,6 +30,22 @@ public class RedBlackBST<E>
         this.root.setIsRed(false);
     }
     
+    public RedBlackNode<E> get(E data){
+        return get(data, root);
+    }
+    
+    private RedBlackNode<E> get(E data, RedBlackNode<E> h){
+        if(h == null) return null;
+        int c = comp.compare(data, h.getData());
+        if(c < 0){
+            return get(data, h.getLeft());
+        } else if(c > 0){
+            return get(data, h.getRight());
+        }else {
+            return h;
+        }
+    }
+    
     private RedBlackNode<E> insert(E data, RedBlackNode<E> h)
     {
         if(h == null) return new RedBlackNode<>(data);
