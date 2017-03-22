@@ -5,19 +5,24 @@
  */
 package algorithms;
 
+import java.util.Comparator;
+
 /**
  *
  * @author Alexander
  */
-public class Map implements IMap{
+public class RedBlackMap<K, V> implements IMap<K, V>{
 
+    int size = 0;
+    private Comparator<K> comp;
+    
     @Override
-    public void put(Object key, Object val) {
+    public void put(K key, V val) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Object get(Object key) {
+    public V get(K key) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
