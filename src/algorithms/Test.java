@@ -21,7 +21,7 @@ public class Test
         myTree.insert("Z");
         myTree.insert("E");
         myTree.insert("D");
-        myTree.insert("C");
-       
+        myTree.insert("C");        
+        myTree.insert("T");
     }
 }
