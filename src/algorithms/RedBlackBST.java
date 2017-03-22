@@ -30,6 +30,12 @@ public class RedBlackBST<E>
         this.root.setIsRed(false);
     }
     
+    public RedBlackNode<E> get(E data) {
+        if(data == null) throw new NullPointerException();
+        
+        return get(data, root);
+    }
+    
     private RedBlackNode<E> insert(E data, RedBlackNode<E> h)
     {
         if(h == null) return new RedBlackNode<>(data);
@@ -96,4 +102,18 @@ public class RedBlackBST<E>
         h.getRight().setIsRed(false);
         h.setIsRed(true);
     }
+    
+    private RedBlackNode<E> get(E data, RedBlackNode<E> node) {
+        if(node == null) return null;
+        
+        int c = comp.compare(data, node.getData());
+        if(c > 0) {
+            return get(data, node.getLeft());
+        } else if (c < 0) {
+            return get(data, node.getRight());
+        } else {
+            return node;
+        }
+    }
+    
 }
