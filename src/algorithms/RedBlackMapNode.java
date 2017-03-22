@@ -36,6 +36,10 @@ public class RedBlackMapNode<K, V> {
         this.val = val;
     }
 
+    public K getKey(){
+        return key;
+    }
+    
     public RedBlackMapNode<K, V> getLeft()
     {
         return left;

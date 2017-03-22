@@ -5,13 +5,15 @@
  */
 package algorithms;
 
+import com.sun.media.sound.InvalidDataException;
+
 /**
  *
  * @author Alexander
  */
 public interface IMap<K, V> {
     
-    void put(K key, V val);
+    void put(K key, V val) throws NullPointerException;
     
     V get(K key);
     
