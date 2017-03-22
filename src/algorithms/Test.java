@@ -15,13 +15,15 @@ public class Test
 {
     public static void main(String[] args)
     {
-        RedBlackBST<String> myTree = new RedBlackBST<String>(Comparator.naturalOrder());
-        myTree.insert("Q"); 
-        myTree.insert("A");
-        myTree.insert("Z");
-        myTree.insert("E");
-        myTree.insert("D");
-        myTree.insert("C");
-       
+        RedBlackBST<String, Integer> myTree = new RedBlackBST<String, Integer>(Comparator.naturalOrder());
+        myTree.put("Q", 2);
+        myTree.put("A", 4);
+        myTree.put("Z", 8);
+        myTree.put("E", 6);
+        myTree.put("D", 1);
+        myTree.put("C", 3);
+        System.out.println(myTree.size());
+        System.out.println(myTree.get("Z"));
+        System.out.println(myTree.get("C"));
     }
 }
