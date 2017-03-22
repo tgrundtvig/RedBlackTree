@@ -31,19 +31,23 @@ public class Test
         System.out.println(myMap.size());
         System.out.println(myMap.get("B"));        
         System.out.println(myMap.get("E"));
+        
+        myMap.put("E", "Hallo again");
+        System.out.println(myMap.size());
+        System.out.println(myMap.get("E"));
 
         // Tree
         
-        RedBlackBST<String> myTree = new RedBlackBST<String>(Comparator.naturalOrder());
-        myTree.insert("Q"); 
-        myTree.insert("A");
-        myTree.insert("Z");
-        myTree.insert("E");
-        myTree.insert("D");
-        myTree.insert("C");  
-        
-        System.out.println(myTree.get("B"));
-        System.out.println(myTree.get("Z").getData());
+//        RedBlackBST<String> myTree = new RedBlackBST<String>(Comparator.naturalOrder());
+//        myTree.insert("Q"); 
+//        myTree.insert("A");
+//        myTree.insert("Z");
+//        myTree.insert("E");
+//        myTree.insert("D");
+//        myTree.insert("C");  
+//        
+//        System.out.println(myTree.get("B"));
+//        System.out.println(myTree.get("Z").getData());
 
     }
 }
