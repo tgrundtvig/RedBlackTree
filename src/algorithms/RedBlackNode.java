@@ -63,9 +63,5 @@ public class RedBlackNode<E>
     public void setIsRed(boolean isRed)
     {
         this.isRed = isRed;
-    }
-    
-    
-    
-    
+    }  
 }
