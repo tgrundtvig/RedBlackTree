@@ -1,4 +1,4 @@
-package algorithms;
+package algorithms.tree;
 
 import java.util.Comparator;
 
@@ -21,6 +21,40 @@ public class RedBlackBST<E>
     {
         this.root = null;
         this.comp = comp;
+    }
+    
+    /**
+     * Public method to search the tree
+     * 
+     * @param data data you are searching for
+     * @return returns data if found
+     */
+    public RedBlackNode<E> get(E data){
+        return get(data, root);
+    }
+    
+    /**
+     * Private method to search the tree.
+     * Checking if value is greater than root, and decides to go left or right
+     * runs recursively till it finds a match
+     * 
+     * @param data data you search for
+     * @param node node you compare data with
+     * @return returns the node if found, or throws null pointer
+     */
+    private RedBlackNode<E> get(E data, RedBlackNode<E> node){
+        if(node == null){
+            return null;
+        }
+        
+        int compNode = comp.compare(data, node.getData());
+        if(compNode < 0){
+            return get(data, node.getLeft());
+        } else if(compNode > 0){
+            return get(data, node.getRight());
+        } else {
+            return node;
+        }        
     }
     
     public void insert(E data)
