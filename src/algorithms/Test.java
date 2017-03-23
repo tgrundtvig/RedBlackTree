@@ -26,5 +26,7 @@ public class Test
         myTree.insert("G");
         myTree.insert("B");
        
+        System.out.println(myTree.get("W"));
+        System.out.println("Search for Q: " + myTree.get("Q"));
     }
 }
