@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algorithms;
+package map;
 
 /**
  *
  * @author jonassimonsen
  */
-public interface IMap {
+public interface IMap<K, V> {
     
-    
-    
+    void put(K key, V value);
+    V get(K key);
+    int size();
 }

@@ -10,7 +10,7 @@ import java.util.Comparator;
 
 /**
  *
- * @author Tobias feat jonassimonsen
+ * @author Tobias feat. jonassimonsen
  */
 public class RedBlackBST<E>
 {
