@@ -23,6 +23,36 @@ public class RedBlackBST<E>
         this.comp = comp;
     }
     
+    public E get(E data) {
+        
+        RedBlackNode<E> h = this.root;
+        while (h != null) {
+            int c = comp.compare(data, h.getData());
+            if (c < 0) {
+                h = h.getLeft();
+            } else if (c > 0) {
+                h = h.getRight();
+            } else {
+                return h.getData();
+            }
+        }
+        return null;
+    }
+    
+    public void remove(E data) {
+        RedBlackNode<E> h = this.root;
+        while (h != null) {
+            int c = comp.compare(data, h.getData());
+            if (c < 0) {
+                h = h.getLeft();
+            } else if (c > 0) {
+                h = h.getRight();
+            } else {
+                h.setData(null);
+            }
+        }
+    }
+    
     public void insert(E data)
     {
         if(data == null) throw new NullPointerException("data should not be null");
