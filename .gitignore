@@ -49,7 +49,7 @@ Temporary Items
 
 
 
-//NetBeans GitIgnore
+# NetBeans GitIgnore
 nbproject/private/
 build/
 nbbuild/
@@ -59,7 +59,7 @@ nbdist/
 
 
 
-// Java GitIgnore
+# Java GitIgnore
 # Compiled class file
 *.class
 
