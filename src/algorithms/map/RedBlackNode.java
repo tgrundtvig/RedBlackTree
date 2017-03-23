@@ -16,12 +16,12 @@ public class RedBlackNode<K, V> {
     private RedBlackNode<K, V> right;
     private boolean isRed;
 
-    public RedBlackNode(K key, V value, RedBlackNode<K, V> left, RedBlackNode<K, V> right, boolean isRed) {
+    public RedBlackNode(K key, V value) {
         this.key = key;
         this.value = value;
-        this.left = left;
-        this.right = right;
-        this.isRed = isRed;
+        this.left = null;
+        this.right = null;
+        this.isRed = true;
     }
 
     public K getKey() {
@@ -56,7 +56,7 @@ public class RedBlackNode<K, V> {
         this.right = right;
     }
 
-    public boolean isIsRed() {
+    public boolean isRed() {
         return isRed;
     }
 

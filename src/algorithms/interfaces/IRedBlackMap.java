@@ -10,7 +10,7 @@ package algorithms.interfaces;
  * @author kasper
  */
 public interface IRedBlackMap<K, V> {
-    public void put(K key, V value);
-    public V get(K key, V value) throws NullPointerException;
+    public void put(K key, V value) throws NullPointerException;
+    public V get(K key, V value);
     public int size();
 }
