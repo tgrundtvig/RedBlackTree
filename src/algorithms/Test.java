@@ -5,6 +5,7 @@
  */
 package algorithms;
 
+import algorithms.tree.RedBlackBST;
 import java.util.Comparator;
 
 /**
@@ -15,6 +16,8 @@ public class Test
 {
     public static void main(String[] args)
     {
+        //Simple test of the tree
+        //Adding data
         RedBlackBST<String> myTree = new RedBlackBST<String>(Comparator.naturalOrder());
         myTree.insert("Q"); 
         myTree.insert("A");
@@ -26,7 +29,10 @@ public class Test
         myTree.insert("G");
         myTree.insert("B");
        
-        System.out.println(myTree.get("W"));
-        System.out.println("Search for Q: " + myTree.get("Q"));
+        //Searching - testing get method
+        //Will print null since its not in the tree
+        System.out.println("Search for W - " + "Data is: " + myTree.get("W"));
+        //Will print Q since it is in the tree
+        System.out.println("Search for Q - " + "Data is: " + myTree.get("Q").getData());
     }
 }
