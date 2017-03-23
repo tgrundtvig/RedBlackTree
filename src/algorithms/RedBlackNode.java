@@ -10,62 +10,60 @@ package algorithms;
  *
  * @author Tobias
  */
-public class RedBlackNode<E>
+public class RedBlackNode<K, V>
 {
-    private E data;
-    private RedBlackNode<E> left;
-    private RedBlackNode<E> right;
+    private K key;
+    private V value;
+    private RedBlackNode<K, V> left;
+    private RedBlackNode<K, V> right;
     private boolean isRed;
 
-    public RedBlackNode(E data)
+    public RedBlackNode(K key, V value)
     {
-        this.data = data;
+        this.key = key;
+        this.value = value;
         this.left = null;
         this.right = null;
         this.isRed = true;
     }
 
-    public E getData()
-    {
-        return data;
+    public K getKey() {
+        return key;
     }
 
-    public void setData(E data)
-    {
-        this.data = data;
+    public void setKey(K key) {
+        this.key = key;
     }
 
-    public RedBlackNode<E> getLeft()
-    {
+    public V getValue() {
+        return value;
+    }
+
+    public void setValue(V value) {
+        this.value = value;
+    }
+
+    public RedBlackNode<K, V> getLeft() {
         return left;
     }
 
-    public void setLeft(RedBlackNode left)
-    {
+    public void setLeft(RedBlackNode<K, V> left) {
         this.left = left;
     }
 
-    public RedBlackNode<E> getRight()
-    {
+    public RedBlackNode<K, V> getRight() {
         return right;
     }
 
-    public void setRight(RedBlackNode right)
-    {
+    public void setRight(RedBlackNode<K, V> right) {
         this.right = right;
     }
 
-    public boolean isRed()
-    {
+    public boolean isRed() {
         return isRed;
     }
 
-    public void setIsRed(boolean isRed)
-    {
-        this.isRed = isRed;
+    public void setIsRed(boolean red) {
+        isRed = red;
     }
-    
-    
-    
-    
 }
