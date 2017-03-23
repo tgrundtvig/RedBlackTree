@@ -1,6 +1,8 @@
 package algorithms;
 
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,39 +14,43 @@ import java.util.Comparator;
  *
  * @author Tobias
  */
-public class RedBlackBST<E>
+public class RedBlackBST<K,V> implements MapInterface<K,V>
 {
-    private RedBlackNode<E> root;
-    private Comparator<E> comp;
-
-    public RedBlackBST(Comparator<E> comp)
+    private RedBlackNode<K, V> root;
+    private Comparator<K> comp;
+    private int size;
+    public RedBlackBST(Comparator<K> comp)
     {
         this.root = null;
         this.comp = comp;
+        this.size = 0;
     }
     
-    public void insert(E data)
+    public void insert(K key, V value)
     {
-        if(data == null) throw new NullPointerException("data should not be null");
-        this.root = insert(data, root);
+        if(key == null || value == null) throw new NullPointerException("data should not be null");
+        this.root = insert(key, value, root);
         this.root.setIsRed(false);
     }
     
-    private RedBlackNode<E> insert(E data, RedBlackNode<E> h)
+    private RedBlackNode<K,V> insert(K key, V value, RedBlackNode<K,V> h)
     {
-        if(h == null) return new RedBlackNode<>(data);
-        int c = comp.compare(data, h.getData());
+        if(h == null) {
+            size++;
+            return new RedBlackNode<>(key,value);
+        }
+        int c = comp.compare(key, h.getKey());
         if(c < 0)
         {
-            h.setLeft(insert(data, h.getLeft()));
+            h.setLeft(insert(key,value, h.getLeft()));
         }
         else if(c > 0)
         {
-            h.setRight(insert(data, h.getRight()));
+            h.setRight(insert(key,value, h.getRight()));
         }
         else
         {
-            h.setData(data);
+            h.setKey(key);
         }
         //Now for the rotating
         if(isRed(h.getRight()) && !isRed(h.getLeft()))
@@ -64,15 +70,15 @@ public class RedBlackBST<E>
         return h;
     }
     
-    private boolean isRed(RedBlackNode<E> node)
+    private boolean isRed(RedBlackNode<K,V> node)
     {
         if(node == null) return false;
         return node.isRed();
     }
     
-    private RedBlackNode<E> rotateLeft(RedBlackNode<E> h)
+    private RedBlackNode<K,V> rotateLeft(RedBlackNode<K,V> h)
     {
-        RedBlackNode<E> tmp = h.getRight();
+        RedBlackNode<K,V> tmp = h.getRight();
         h.setRight(tmp.getLeft());
         tmp.setLeft(h);
         tmp.setIsRed(h.isRed());
@@ -80,9 +86,9 @@ public class RedBlackBST<E>
         return tmp;
     }
     
-    private RedBlackNode<E> rotateRight(RedBlackNode<E> h)
+    private RedBlackNode<K,V> rotateRight(RedBlackNode<K,V> h)
     {
-        RedBlackNode<E> tmp = h.getLeft();
+        RedBlackNode<K,V> tmp = h.getLeft();
         h.setLeft(tmp.getRight());
         tmp.setRight(h);
         tmp.setIsRed(h.isRed());
@@ -90,10 +96,50 @@ public class RedBlackBST<E>
         return tmp;
     }
     
-    private void flipColors(RedBlackNode<E> h)
+    private void flipColors(RedBlackNode<K,V> h)
     {
         h.getLeft().setIsRed(false);
         h.getRight().setIsRed(false);
         h.setIsRed(true);
+    }   
+
+    @Override
+    public void put(K key, V value) {
+        if(key == null){
+            throw new NullPointerException("data should not be null");
+            
+        }
+        this.root = insert(key, value, root); 
+        this.root.setIsRed(false);
+        
+    }
+
+    @Override
+    public V get(K key) {
+         if (key == null) throw new NullPointerException();
+         RedBlackNode<K,V> tmp = get(key, root);
+         if (tmp == null) {
+            return null;
+        }
+        return tmp.getValue();
+        
+    }
+
+    @Override
+    public int size() {
+        return size;    
+    }
+    
+     private RedBlackNode<K, V> get(K key, RedBlackNode<K, V> node) {
+       if(node == null) return null;
+     
+       int c = comp.compare(key, node.getKey());
+       if(c > 0) {
+            return get(key, node.getRight());
+        } else if (c < 0) {
+            return get(key, node.getLeft());
+        } else {
+           return node;
+         }
     }
 }
