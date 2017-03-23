@@ -1,41 +1,49 @@
 package algorithms;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Tobias
  */
-public class RedBlackNode<E>
+public class RedBlackNode<k,v>
 {
-    private E data;
-    private RedBlackNode<E> left;
-    private RedBlackNode<E> right;
+    private v value;
+    private k data;
+    private RedBlackNode<k,v> left;
+    private RedBlackNode<k,v> right;
     private boolean isRed;
 
-    public RedBlackNode(E data)
+    public RedBlackNode(k data,v value)
     {
+        this.value = value;
         this.data = data;
         this.left = null;
         this.right = null;
         this.isRed = true;
     }
 
-    public E getData()
+    public v getValue() {
+        return value;
+    }
+
+    public void setValue(v value) {
+        this.value = value;
+    }
+
+    
+    
+    
+    
+    public k getData()
     {
         return data;
     }
 
-    public void setData(E data)
+    public void setData(k data)
     {
         this.data = data;
     }
 
-    public RedBlackNode<E> getLeft()
+    public RedBlackNode<k,v> getLeft()
     {
         return left;
     }
@@ -45,7 +53,7 @@ public class RedBlackNode<E>
         this.left = left;
     }
 
-    public RedBlackNode<E> getRight()
+    public RedBlackNode<k,v> getRight()
     {
         return right;
     }
@@ -64,8 +72,4 @@ public class RedBlackNode<E>
     {
         this.isRed = isRed;
     }
-    
-    
-    
-    
 }
