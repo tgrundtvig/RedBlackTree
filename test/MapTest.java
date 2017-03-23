@@ -55,7 +55,6 @@ public class MapTest {
     @Test
     public void sizeTest(){
         KPMapInterface mi = new KPMap(3);
-        
         mi.put(5, "hej5");
         mi.put(2, "hej2");
         mi.put(17, "hej17");
