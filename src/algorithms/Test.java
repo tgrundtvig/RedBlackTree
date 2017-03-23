@@ -5,8 +5,6 @@
  */
 package algorithms;
 
-import java.util.Comparator;
-
 /**
  *
  * @author Tobias
@@ -15,13 +13,14 @@ public class Test
 {
     public static void main(String[] args)
     {
-        RedBlackBST<String> myTree = new RedBlackBST<String>(Comparator.naturalOrder());
-        myTree.insert("Q"); 
-        myTree.insert("A");
-        myTree.insert("Z");
-        myTree.insert("E");
-        myTree.insert("D");
-        myTree.insert("C");
-       
+        TreeInterface<Integer, String> tree = new Tree<>();
+        tree.put(6, "F");
+        tree.put(3, "C");
+        tree.put(15, "O");
+        tree.put(4, "E");
+        tree.put(10, "J");
+
+        RedBlackNode<Integer, String> root = tree.getRoot();
+        System.out.println(tree.get(10, root));
     }
 }
