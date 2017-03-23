@@ -45,6 +45,7 @@ public class Test {
 
     private static void testMap() {
         RedBlackMap<String, String> myMap = new RedBlackMap<String, String>(Comparator.naturalOrder());
+        System.out.println("Size = " + myMap.size());
         myMap.put("Q", "QQ");
         myMap.put("A", "AA");
         myMap.put("Z", "ZZ");
@@ -54,9 +55,13 @@ public class Test {
         myMap.put("T", "TT");
         myMap.put("G", "GG");
         myMap.put("B", "BB");
-        
-        System.out.println("Size" + myMap.size());
+        System.out.println("Size = " + myMap.size());
 
+        //Searching - testing get method
+        //Will print null since its not in the tree
+        System.out.println("Search for W - " + "Value is: " + myMap.get("W"));
+        //Will print Q since it is in the tree
+        System.out.println("Search for Q - " + "Value is: " + myMap.get("Q"));
     }
 
 }

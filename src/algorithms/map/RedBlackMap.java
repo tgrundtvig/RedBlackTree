@@ -23,6 +23,13 @@ public class RedBlackMap<K, V> implements IRedBlackMap<K, V> {
         this.comp = comp;
     }
 
+    /**
+     * Method to insert data into the map
+     *
+     * @param key node you wanna insert
+     * @param value value of that node
+     * @throws NullPointerException if key or value is null
+     */
     @Override
     public void put(K key, V value) throws NullPointerException {
         if (key == null || value == null) {
@@ -32,16 +39,41 @@ public class RedBlackMap<K, V> implements IRedBlackMap<K, V> {
         this.root.setIsRed(false);
     }
 
+    /**
+     * Method to get the value of a node
+     *
+     * @param key node you are searching for
+     * @return value of node
+     */
     @Override
-    public V get(K key, V value) {
-        return null;
+    public V get(K key) {
+        RedBlackNode<K, V> node = get(key, root);
+
+        if (node == null) {
+            return null;
+        }
+        return node.getValue();
     }
 
+    /**
+     * Method to get size of map
+     *
+     * @return size of map (int).
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     * Helper method to put. Method will determine where to set the node (left
+     * or right child)
+     *
+     * @param key node you want to insert
+     * @param value value of node you want to insert
+     * @param node parent node you are checking
+     * @return node
+     */
     private RedBlackNode<K, V> put(K key, V value, RedBlackNode<K, V> node) {
 
         if (node == null) {
@@ -59,6 +91,8 @@ public class RedBlackMap<K, V> implements IRedBlackMap<K, V> {
             node.setValue(value);
         }
 
+        //Rotate as needed if map is not leaning to the left accodingly to the 
+        // left-leaning-red-black algorithm
         if (isRed(node.getRight()) && !isRed(node.getLeft())) {
             node = rotateLeft(node);
         }
@@ -74,10 +108,33 @@ public class RedBlackMap<K, V> implements IRedBlackMap<K, V> {
         return node;
     }
 
-    private void get() {
+    /**
+     * Helper method to get. Method will find the node in the map.
+     *
+     * @param key node you are looking for
+     * @param node node you are checking
+     * @return the node or null if nothing is found
+     */
+    private RedBlackNode<K, V> get(K key, RedBlackNode<K, V> node) {
+        if (node == null) {
+            return null;
+        }
 
+        int compNode = comp.compare(key, node.getKey());
+
+        if (compNode < 0) {
+            return get(key, node.getLeft());
+        } else if (compNode > 0) {
+            return get(key, node.getRight());
+        } else {
+            return node;
+        }
     }
 
+    /**
+     * Methods below are copied from RedBlackBST and changed to use new node for
+     * map instead
+     */
     private boolean isRed(RedBlackNode<K, V> node) {
         if (node == null) {
             return false;
