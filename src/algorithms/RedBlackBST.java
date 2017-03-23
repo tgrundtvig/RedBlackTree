@@ -23,7 +23,7 @@ public class RedBlackBST<E>
         this.comp = comp;
     }
     
-    public void insert(E data)
+    public void insert(E data)// is a comparator DATA (value in the NODE)
     {
         if(data == null) throw new NullPointerException("data should not be null");
         this.root = insert(data, root);
@@ -95,5 +95,27 @@ public class RedBlackBST<E>
         h.getLeft().setIsRed(false);
         h.getRight().setIsRed(false);
         h.setIsRed(true);
+    }
+    
+    public RedBlackNode<E> get(E data){// data is value from the node, the key
+        if (data == null) {
+            throw new NullPointerException();//nothing to get
+        }
+        return get(root, data);
+    }
+    
+    private RedBlackNode<E> get(RedBlackNode<E> node, E data){
+    
+        while(node != null){
+        int temp = comp.compare(data, node.getData());
+            if (temp < 0) {
+                node = node.getLeft();
+            }else if (temp > 0) {
+                node = node.getRight();
+            }else{
+                return node;
+            }
+        } 
+        return null;
     }
 }

@@ -22,6 +22,10 @@ public class Test
         myTree.insert("E");
         myTree.insert("D");
         myTree.insert("C");
+        
+        
+        System.out.println(myTree.get("C").getData());
+        System.out.println(myTree.get("T").getData());
        
     }
 }
