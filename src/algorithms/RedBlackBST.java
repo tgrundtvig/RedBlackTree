@@ -18,7 +18,7 @@ import java.util.Comparator;
 public class RedBlackBST<Key, Value> implements IMyMap<Key, Value>
 {
     private RedBlackNode<Key, Value> root;
-    private Comparator<Key> comp; //Maybe compare on value?
+    private Comparator<Key> comp;
 
     public RedBlackBST(Comparator<Key> comp)
     {
@@ -31,9 +31,9 @@ public class RedBlackBST<Key, Value> implements IMyMap<Key, Value>
         if(key == null) throw new NullPointerException("key should not be null");
         return getValue(key, this.root);
     }
-    http://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/
-    http://algs4.cs.princeton.edu/33balanced/RedBlackBST.java.html
-    //Delete also works if you put in a Key and NULL value as value.
+    //http://www.geeksforgeeks.org/red-black-tree-set-3-delete-2/
+    //http://algs4.cs.princeton.edu/33balanced/RedBlackBST.java.html
+    //Delete also works if you put in a Key and NULL value as value. However not implemented yet.
     @Override
     public void put(Key key, Value value) {
         if(key == null) throw new NullPointerException("key should not be null");
