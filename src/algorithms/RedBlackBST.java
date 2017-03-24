@@ -1,6 +1,8 @@
 package algorithms;
 
+import java.util.Arrays;
 import java.util.Comparator;
+import static javax.management.Query.value;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,27 +14,51 @@ import java.util.Comparator;
  *
  * @author Tobias
  */
-public class RedBlackBST<E>
-{
-    private RedBlackNode<E> root;
-    private Comparator<E> comp;
+public class RedBlackBST<k, v> implements Map<k, v>
+{   
+    private int size;
+    private int length = 1;
+    private RedBlackNode<k, v>[] nodeList = new RedBlackNode[length];
+    private RedBlackNode<k,v> root;
+    private Comparator<k> comp;
 
-    public RedBlackBST(Comparator<E> comp)
+    public RedBlackBST(Comparator<k> comp)
     {
         this.root = null;
         this.comp = comp;
     }
-    
-    public void insert(E data)
-    {
-        if(data == null) throw new NullPointerException("data should not be null");
-        this.root = insert(data, root);
-        this.root.setIsRed(false);
+    @Override
+    public void put(k key, v value) {
+        boolean insert = true;
+        for (int i = 0; i < size; i++) {
+            if (nodeList[i].getData().equals(key)) {
+                nodeList[i].setValue(value);
+                insert = false;
+            }
+        }
+        if (insert) {
+            if (size == nodeList.length) {
+                int newSize = nodeList.length * 2;
+                nodeList = Arrays.copyOf(nodeList, newSize);
+            }
+            nodeList[size++] = new RedBlackNode<k, v>(key, value);
+        }
+    }
+    @Override
+    public v get(k key) {
+        for(int i = 0; i < size; i++) {
+            if (nodeList[i] != null) {
+                if (nodeList[i].getData().equals(key)) {
+                     return nodeList[i].getValue();    
+                }
+            }
+        }
+        return null;
     }
     
-    private RedBlackNode<E> insert(E data, RedBlackNode<E> h)
+    private RedBlackNode<k, v> insert(k data, RedBlackNode<k, v> h)
     {
-        if(h == null) return new RedBlackNode<>(data);
+        if(h == null) return new RedBlackNode<>(data, h.getValue());
         int c = comp.compare(data, h.getData());
         if(c < 0)
         {
@@ -63,16 +89,16 @@ public class RedBlackBST<E>
         }
         return h;
     }
-    
-    private boolean isRed(RedBlackNode<E> node)
+        
+    private boolean isRed(RedBlackNode<k, v> node)
     {
         if(node == null) return false;
         return node.isRed();
     }
     
-    private RedBlackNode<E> rotateLeft(RedBlackNode<E> h)
+    private RedBlackNode<k, v> rotateLeft(RedBlackNode<k, v> h)
     {
-        RedBlackNode<E> tmp = h.getRight();
+        RedBlackNode<k, v> tmp = h.getRight();
         h.setRight(tmp.getLeft());
         tmp.setLeft(h);
         tmp.setIsRed(h.isRed());
@@ -80,9 +106,9 @@ public class RedBlackBST<E>
         return tmp;
     }
     
-    private RedBlackNode<E> rotateRight(RedBlackNode<E> h)
+    private RedBlackNode<k, v> rotateRight(RedBlackNode<k, v> h)
     {
-        RedBlackNode<E> tmp = h.getLeft();
+        RedBlackNode<k, v> tmp = h.getLeft();
         h.setLeft(tmp.getRight());
         tmp.setRight(h);
         tmp.setIsRed(h.isRed());
@@ -90,10 +116,15 @@ public class RedBlackBST<E>
         return tmp;
     }
     
-    private void flipColors(RedBlackNode<E> h)
+    private void flipColors(RedBlackNode<k, v> h)
     {
         h.getLeft().setIsRed(false);
         h.getRight().setIsRed(false);
         h.setIsRed(true);
+    }
+    
+    @Override
+    public int size() {
+    return size;
     }
 }
