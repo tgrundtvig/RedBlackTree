@@ -23,6 +23,33 @@ public class RedBlackBST<E>
         this.comp = comp;
     }
     
+    //I decided to make 2 get methods, because the public method get
+    //should only take an element at parameter. in my opinion
+    public E get(E element){
+        if(root == null) return null;
+        int compValue = comp.compare(root.getData(), element);
+        if(compValue > 0){
+            return get(element, root.getLeft());
+        }
+        if(compValue < 0){
+            return get(element, root.getRight());
+        }
+        return root.getData();
+    }
+    //this is the other part of the double method. this takes an RedBlackNode
+    //as parameter, and recursivly calls that method throu the tree.
+    private E get(E element,RedBlackNode<E> node){
+        if(node == null) return null;
+        int compValue = comp.compare(node.getData(), element);
+        if(compValue > 0){
+            return get(element, node.getLeft());
+        }
+        if(compValue < 0){
+            return get(element, node.getRight());
+        }
+        return node.getData();
+    }
+    
     public void insert(E data)
     {
         if(data == null) throw new NullPointerException("data should not be null");
