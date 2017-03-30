@@ -11,6 +11,7 @@ import java.util.Comparator;
 /**
  *
  * @author Tobias
+ * @author Manish Shrestha
  */
 public class RedBlackBST<E>
 {
@@ -28,6 +29,11 @@ public class RedBlackBST<E>
         if(data == null) throw new NullPointerException("data should not be null");
         this.root = insert(data, root);
         this.root.setIsRed(false);
+    }
+    
+    public RedBlackNode<E> get(E data) {
+        if(data == null) throw new NullPointerException();
+        return get(data, root);
     }
     
     private RedBlackNode<E> insert(E data, RedBlackNode<E> h)
@@ -95,5 +101,20 @@ public class RedBlackBST<E>
         h.getLeft().setIsRed(false);
         h.getRight().setIsRed(false);
         h.setIsRed(true);
+    }
+    
+    private RedBlackNode<E> get(E data, RedBlackNode <E> node) {
+        if(node == null) return null;
+        
+        int c = comp.compare(data, node.getData());
+        if(c > 0 ) {
+            return get(data, node.getLeft());
+            
+        } else if (c < 0) {
+            return get(data, node.getRight());
+            
+        } else {
+            return node;
+        }
     }
 }
